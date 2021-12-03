@@ -30,6 +30,7 @@ namespace Minesweeper
                     int m = j + 2;
                     if (whereMines[i-1, j-1] == true)
                     {
+                        gameBoard[i, j] += 10;
                         for (int o = i-1; o < i+2; o++)
                         {
                             for (int p = j-1; p < j+2; p++)
@@ -40,6 +41,7 @@ namespace Minesweeper
                     }
                 }
             }
+
         }
         public void CheckBoard()
         {
@@ -58,7 +60,15 @@ namespace Minesweeper
             {
                 for (int j = 1; j < boardHeight+1; j++)
                 {
-                    Console.Write("(" + i + "," + j + ") = " + gameBoard[i, j]);
+                    if (gameBoard[i, j] > 9)
+                    {
+                        Console.Write("(" + i + "," + j + ") = m");
+                    }
+                    else
+                    {
+                        Console.Write("(" + i + "," + j + ") = " + gameBoard[i, j]);
+                    }
+                    
                 }
                 Console.Write("\n");
             }
