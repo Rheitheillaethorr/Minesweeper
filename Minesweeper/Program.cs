@@ -6,10 +6,11 @@ namespace Minesweeper
     {
         static void Main(string[] args)
         {
-            int width = 4;
-            int height = 4;
-            int Cmines = 5;
-            Mines MinesArrangement = new Mines(width, height, Cmines);
+            UserInput userInput = new UserInput();
+            var boardColumns = userInput.GetBoardWidth();
+            var boardRows = userInput.GetBoardHeight();
+            var minesCount = userInput.GetMinesCount();
+            Mines MinesArrangement = new Mines(boardColumns, boardRows, minesCount);
             MinesArrangement.SetMines();
             MinesArrangement.CheckArray();
         }
