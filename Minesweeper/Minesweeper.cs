@@ -14,8 +14,14 @@ namespace Minesweeper
             //MinesArrangement.CheckArray();
             Board GameBoard = new Board(boardColumns, boardRows, minesCount);
             GameBoard.CreateBoard();
+            GameBoard.CheckBoardMines();
             GameBoard.CheckBoard();
-            GameBoard.CheckBoardX();
+            while (true)
+            {
+                Console.Clear();
+                var fieldSelectedByTheUser = userInput.GetFieldFromTheUser(userInput.GetColumnFromTheUser(), userInput.GetRowFromTheUser());
+                Console.ReadKey();
+            }
         }
     }
 }

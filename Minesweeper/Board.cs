@@ -3,12 +3,13 @@ namespace Minesweeper
 {
     public class Board
     {
-        
+
         public int[,] gameBoard { get; set; }
         public int boardWidth { get; set; }
         public int boardHeight { get; set; }
         public int minesCount { get; set; }
         public bool[,] whereMines { get; set; }
+        public bool[,] knownFieldsByTheUser { get; set; }
 
         public Board(int width, int height, int Cmines)
         {
@@ -17,6 +18,7 @@ namespace Minesweeper
             minesCount = Cmines;
             gameBoard = new int[boardWidth+2, boardHeight+2];
             whereMines = new bool[boardWidth, boardHeight];
+            knownFieldsByTheUser = new bool[boardWidth+2, boardHeight+2];
         }
         public void CreateBoard()
         {
@@ -43,7 +45,7 @@ namespace Minesweeper
             }
 
         }
-        public void CheckBoard()
+        public void CheckBoardMines()
         {
             for (int i = 0; i < boardWidth; i++)
             {
@@ -54,7 +56,7 @@ namespace Minesweeper
                 Console.Write("\n");
             }
         }
-        public void CheckBoardX()
+        public void CheckBoard()
         {
             for (int i = 1; i < boardWidth+1; i++)
             {
@@ -72,6 +74,18 @@ namespace Minesweeper
                 }
                 Console.Write("\n");
             }
+        }
+        public bool WhetherFieldIsKnown(int selectedColumn, int selectedRow)
+        {
+            return knownFieldsByTheUser[selectedColumn, selectedRow] ;
+        }
+        public void MarkFieldAsKnown(int selectedColumn, int selectedRow)
+        {
+            knownFieldsByTheUser[selectedColumn, selectedRow] = true;
+        }
+        public void CheckField(int selectedColumn, int selectedRow)
+        {
+            Console.WriteLine(knownFieldsByTheUser[selectedColumn, selectedRow]);
         }
     }
 }

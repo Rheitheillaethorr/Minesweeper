@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 namespace Minesweeper
 {
     public class UserInput
@@ -60,6 +61,56 @@ namespace Minesweeper
                 Console.WriteLine("error, try again");
                 return GetBoardWidth();
             }
+        }
+        public int GetColumnFromTheUser()
+        {
+            Console.WriteLine("Choose column: ");
+            Console.WriteLine("Possible choices: 1-" + boardWidth);
+            int parsedInt;
+            bool successfullyParsed = Int32.TryParse(Console.ReadLine(), out parsedInt);
+            if (successfullyParsed && Enumerable.Range(1, boardWidth).Contains(parsedInt))
+            { 
+                return parsedInt;
+            }
+            else
+            {
+                Console.WriteLine("error, try again");
+                return GetColumnFromTheUser();
+            }
+        }
+        public int GetRowFromTheUser()
+        {
+            Console.WriteLine("Choose row: ");
+            Console.WriteLine("Possible choices: 1-" + boardHeight);
+            int parsedInt;
+            bool successfullyParsed = Int32.TryParse(Console.ReadLine(), out parsedInt);
+            if (successfullyParsed && Enumerable.Range(1, boardHeight).Contains(parsedInt))
+            {
+                return parsedInt;
+            }
+            else
+            {
+                Console.WriteLine("error, try again");
+                return GetRowFromTheUser();
+            }
+        }
+
+        public string GetFieldFromTheUser(int selectedColumn, int selectedRow)
+        {
+            Board FieldChecker = new Board(boardWidth, boardHeight, minesCount);
+            if (FieldChecker.WhetherFieldIsKnown(selectedColumn, selectedRow))
+            {
+                Console.WriteLine("This field was already used, choose other field");
+                return GetFieldFromTheUser(GetColumnFromTheUser(), GetRowFromTheUser());
+            }
+            else
+            {
+                FieldChecker.MarkFieldAsKnown(selectedColumn, selectedRow);
+            }
+            FieldChecker.CheckField(selectedColumn, selectedRow);
+            string connectedField = "(" + selectedColumn + "," + selectedRow + ")";
+            Console.WriteLine(connectedField);
+            return connectedField;
         }
     }
 }
