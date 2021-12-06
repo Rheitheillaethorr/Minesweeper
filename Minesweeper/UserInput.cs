@@ -97,7 +97,7 @@ namespace Minesweeper
 
         public string GetFieldFromTheUser(int selectedColumn, int selectedRow)
         {
-            Board FieldChecker = new Board(boardWidth, boardHeight, minesCount);
+            FieldChecker.CheckField(selectedColumn, selectedRow);
             if (FieldChecker.WhetherFieldIsKnown(selectedColumn, selectedRow))
             {
                 Console.WriteLine("This field was already used, choose other field");

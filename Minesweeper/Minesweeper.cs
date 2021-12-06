@@ -3,9 +3,10 @@ namespace Minesweeper
 {
     public class MinesweeperGame
     {
+        UserInput userInput = new UserInput();
+        private Board GameBoard;
         public void Start()
         {
-            UserInput userInput = new UserInput();
             var boardColumns = userInput.GetBoardWidth();
             var boardRows = userInput.GetBoardHeight();
             var minesCount = userInput.GetMinesCount();
@@ -18,10 +19,24 @@ namespace Minesweeper
             GameBoard.CheckBoard();
             while (true)
             {
-                Console.Clear();
-                var fieldSelectedByTheUser = userInput.GetFieldFromTheUser(userInput.GetColumnFromTheUser(), userInput.GetRowFromTheUser());
-                Console.ReadKey();
+                CheckField();
             }
+        }
+        private void CheckField()
+        {
+            Console.Clear();
+            var selectedColumn = userInput.GetColumnFromTheUser();
+            var selectedRow = userInput.GetRowFromTheUser();
+            if (GameBoard.WhetherFieldIsKnown(selectedColumn, selectedRow))
+            {
+                Console.WriteLine("This field was already used, choose other field");
+                return GetFieldFromTheUser(GetColumnFromTheUser(), GetRowFromTheUser());
+            }
+            else
+            {
+                GameBoard.MarkFieldAsKnown(selectedColumn, selectedRow);
+            }
+            Console.ReadKey();
         }
     }
 }
