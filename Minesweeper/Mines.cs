@@ -45,17 +45,17 @@ namespace Minesweeper
             }
             return minesBoard;
         }
-        //public void CheckArray()
-        //{
-        //    for (int i = 0; i < boardWidth; i++)
-        //    {
-        //        for (int j = 0; j < boardHeight; j++)
-        //        {
-        //            Console.Write("(" + i + "," + j + ") = " + minesBoard[i, j]);
-        //        }
-        //        Console.Write("\n");
-        //    }
-        //    Console.Write("mines to use = " + minesCount);
-        //}
+        public void CheckArray()
+        {
+            for (int i = 0; i < boardWidth; i++)
+            {
+                for (int j = 0; j < boardHeight; j++)
+                {
+                    Console.Write("(" + i + "," + j + ") = " + minesBoard[i, j]);
+                }
+                Console.Write("\n");
+            }
+            Console.Write("mines to use = " + minesCount);
+        }
     }
 }

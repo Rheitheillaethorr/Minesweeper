@@ -4,12 +4,12 @@ namespace Minesweeper
     public class MinesweeperGame
     {
         UserInput userInput = new UserInput();
-        private Board GameBoard;
+        public Board GameBoard;
         public void Start()
         {
-            var boardColumns = userInput.GetBoardWidth();
-            var boardRows = userInput.GetBoardHeight();
-            var minesCount = userInput.GetMinesCount();
+            int boardColumns = userInput.GetBoardWidth();
+            int boardRows = userInput.GetBoardHeight();
+            int minesCount = userInput.GetMinesCount();
             //Mines MinesArrangement = new Mines(boardColumns, boardRows, minesCount);
             //MinesArrangement.SetMines();
             //MinesArrangement.CheckArray();
@@ -17,26 +17,68 @@ namespace Minesweeper
             GameBoard.CreateBoard();
             GameBoard.CheckBoardMines();
             GameBoard.CheckBoard();
-            while (true)
+            Console.ReadKey();
+            bool continueGameCondition = true;
+            bool gameWinOrLose = false;
+            int possibleCountOfChecks = (boardColumns * boardRows) - minesCount;
+            int countOfChecks = 0;
+            while (continueGameCondition)
             {
-                CheckField();
+                Console.Clear();
+                GameBoard.BoardDisplay();
+                if (possibleCountOfChecks == countOfChecks)
+                {
+                    gameWinOrLose = true;
+                    continueGameCondition = false;
+                    break;
+                }
+                var selectedColumn = userInput.GetColumnFromTheUser();
+                var selectedRow = userInput.GetRowFromTheUser();
+                if (GameBoard.WhetherFieldIsKnown(selectedColumn, selectedRow))
+                {
+                    Console.WriteLine("This field was already used, choose other field");
+                }
+                else
+                {
+                    if (GameBoard.CheckField(selectedColumn, selectedRow) < 9)
+                    {
+
+                    }
+                    else
+                    {
+                        continueGameCondition = false;
+                    }
+                    countOfChecks++;
+                    GameBoard.MarkFieldAsKnown(selectedColumn, selectedRow);
+                }
+                Console.ReadKey();
             }
-        }
-        private void CheckField()
-        {
-            Console.Clear();
-            var selectedColumn = userInput.GetColumnFromTheUser();
-            var selectedRow = userInput.GetRowFromTheUser();
-            if (GameBoard.WhetherFieldIsKnown(selectedColumn, selectedRow))
+            if (gameWinOrLose == false)
             {
-                Console.WriteLine("This field was already used, choose other field");
-                return GetFieldFromTheUser(GetColumnFromTheUser(), GetRowFromTheUser());
+                Console.WriteLine("Boom, Game is over, you failed!");
             }
             else
             {
-                GameBoard.MarkFieldAsKnown(selectedColumn, selectedRow);
+                Console.WriteLine("You did well today!");
             }
-            Console.ReadKey();
         }
+        
+    //    public void CheckField()
+    //    {
+    //        Console.Clear();
+    //        var selectedColumn = userInput.GetColumnFromTheUser();
+    //        var selectedRow = userInput.GetRowFromTheUser();
+            
+    //        if (GameBoard.WhetherFieldIsKnown(selectedColumn, selectedRow))
+    //        {
+    //            Console.WriteLine("This field was already used, choose other field");
+    //            CheckField();
+    //        }
+    //        else
+    //        {
+    //            GameBoard.MarkFieldAsKnown(selectedColumn, selectedRow);
+    //        }
+    //        Console.ReadKey();
+    //    }
     }
 }

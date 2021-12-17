@@ -95,22 +95,22 @@ namespace Minesweeper
             }
         }
 
-        public string GetFieldFromTheUser(int selectedColumn, int selectedRow)
-        {
-            FieldChecker.CheckField(selectedColumn, selectedRow);
-            if (FieldChecker.WhetherFieldIsKnown(selectedColumn, selectedRow))
-            {
-                Console.WriteLine("This field was already used, choose other field");
-                return GetFieldFromTheUser(GetColumnFromTheUser(), GetRowFromTheUser());
-            }
-            else
-            {
-                FieldChecker.MarkFieldAsKnown(selectedColumn, selectedRow);
-            }
-            FieldChecker.CheckField(selectedColumn, selectedRow);
-            string connectedField = "(" + selectedColumn + "," + selectedRow + ")";
-            Console.WriteLine(connectedField);
-            return connectedField;
-        }
+        //public string GetFieldFromTheUser(int selectedColumn, int selectedRow)
+        //{
+        //    FieldChecker.CheckField(selectedColumn, selectedRow);
+        //    if (FieldChecker.WhetherFieldIsKnown(selectedColumn, selectedRow))
+        //    {
+        //        Console.WriteLine("This field was already used, choose other field");
+        //        return GetFieldFromTheUser(GetColumnFromTheUser(), GetRowFromTheUser());
+        //    }
+        //    else
+        //    {
+        //        FieldChecker.MarkFieldAsKnown(selectedColumn, selectedRow);
+        //    }
+        //    FieldChecker.CheckField(selectedColumn, selectedRow);
+        //    string connectedField = "(" + selectedColumn + "," + selectedRow + ")";
+        //    Console.WriteLine(connectedField);
+        //    return connectedField;
+        //}
     }
 }

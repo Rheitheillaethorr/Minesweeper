@@ -43,7 +43,6 @@ namespace Minesweeper
                     }
                 }
             }
-
         }
         public void CheckBoardMines()
         {
@@ -70,7 +69,6 @@ namespace Minesweeper
                     {
                         Console.Write("(" + i + "," + j + ") = " + gameBoard[i, j]);
                     }
-                    
                 }
                 Console.Write("\n");
             }
@@ -83,9 +81,32 @@ namespace Minesweeper
         {
             knownFieldsByTheUser[selectedColumn, selectedRow] = true;
         }
-        public void CheckField(int selectedColumn, int selectedRow)
+        //public void CheckField(int selectedColumn, int selectedRow)
+        //{
+        //    //Tool to check if field was used before, returns true/false
+        //    Console.WriteLine(knownFieldsByTheUser[selectedColumn, selectedRow]);
+        //}
+        public int CheckField(int selectedColumn, int selectedRow)
         {
-            Console.WriteLine(knownFieldsByTheUser[selectedColumn, selectedRow]);
+           return gameBoard[selectedColumn, selectedRow];
+        }
+        public void BoardDisplay()
+        {
+            for (int i = 1; i < boardWidth + 1; i++)
+            {
+                for (int j = 1; j < boardHeight + 1; j++)
+                {
+                    if (knownFieldsByTheUser[i, j])
+                    {
+                        Console.Write("(" + i + "," + j + ") = " + gameBoard[i, j]);
+                    }
+                    else
+                    {
+                        Console.Write("(" + i + "," + j + ") = ?");
+                    }
+                }
+                Console.Write("\n");
+            }
         }
     }
 }
