@@ -21,12 +21,12 @@ namespace Minesweeper
             bool continueGameCondition = true;
             bool gameWinOrLose = false;
             int possibleCountOfChecks = (boardColumns * boardRows) - minesCount;
-            int countOfChecks = 0;
             while (continueGameCondition)
             {
+                //userInput.ActionOfUser();
                 Console.Clear();
-                GameBoard.BoardDisplay();
-                if (possibleCountOfChecks == countOfChecks)
+                GameBoard.BoardDisplay("?");
+                if (possibleCountOfChecks == GameBoard.CountNumberOfChecked())
                 {
                     gameWinOrLose = true;
                     continueGameCondition = false;
@@ -42,43 +42,26 @@ namespace Minesweeper
                 {
                     if (GameBoard.CheckField(selectedColumn, selectedRow) < 9)
                     {
-
+                        GameBoard.MarkFieldAsKnown(selectedColumn, selectedRow);
+                        GameBoard.CheckForZeroAround(selectedColumn, selectedRow);
                     }
                     else
                     {
                         continueGameCondition = false;
-                    }
-                    countOfChecks++;
-                    GameBoard.MarkFieldAsKnown(selectedColumn, selectedRow);
+                    } 
                 }
                 Console.ReadKey();
             }
             if (gameWinOrLose == false)
             {
-                Console.WriteLine("Boom, Game is over, you failed!");
+                Console.WriteLine("Boom, game is over, you failed!");
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("You did well today!");
+                GameBoard.BoardDisplay("m");
             }
         }
-        
-    //    public void CheckField()
-    //    {
-    //        Console.Clear();
-    //        var selectedColumn = userInput.GetColumnFromTheUser();
-    //        var selectedRow = userInput.GetRowFromTheUser();
-            
-    //        if (GameBoard.WhetherFieldIsKnown(selectedColumn, selectedRow))
-    //        {
-    //            Console.WriteLine("This field was already used, choose other field");
-    //            CheckField();
-    //        }
-    //        else
-    //        {
-    //            GameBoard.MarkFieldAsKnown(selectedColumn, selectedRow);
-    //        }
-    //        Console.ReadKey();
-    //    }
     }
 }

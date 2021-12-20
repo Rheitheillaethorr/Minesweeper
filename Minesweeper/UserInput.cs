@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Minesweeper.enums;
 namespace Minesweeper
 {
     public class UserInput
@@ -94,23 +95,24 @@ namespace Minesweeper
                 return GetRowFromTheUser();
             }
         }
-
-        //public string GetFieldFromTheUser(int selectedColumn, int selectedRow)
+        //public string ActionOfUser()
         //{
-        //    FieldChecker.CheckField(selectedColumn, selectedRow);
-        //    if (FieldChecker.WhetherFieldIsKnown(selectedColumn, selectedRow))
+        //    Console.WriteLine("Check position/ Mark position as mine");
+        //    Console.WriteLine("Use 'check', 'mark'");
+        //    possibleChoices ChoiceOfUser = Console.ReadLine();
+        //    switch (possibleChoices)
         //    {
-        //        Console.WriteLine("This field was already used, choose other field");
-        //        return GetFieldFromTheUser(GetColumnFromTheUser(), GetRowFromTheUser());
+        //        case possibleChoices.check:
+        //            return "check";
+        //            break;
+        //        case possibleChoices.mark:
+        //            return "mark";
+        //            break;
+        //        default:
+        //            Console.WriteLine("Unknown choice, try again!");
+        //            ActionOfUser();
+        //            break;
         //    }
-        //    else
-        //    {
-        //        FieldChecker.MarkFieldAsKnown(selectedColumn, selectedRow);
-        //    }
-        //    FieldChecker.CheckField(selectedColumn, selectedRow);
-        //    string connectedField = "(" + selectedColumn + "," + selectedRow + ")";
-        //    Console.WriteLine(connectedField);
-        //    return connectedField;
         //}
     }
 }
