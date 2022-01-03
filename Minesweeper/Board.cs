@@ -106,8 +106,6 @@ namespace Minesweeper
         {
            return gameBoard[selectedColumn, selectedRow];
         }
-
-
         public void DisplayHelper(int selectedColumn, int selectedRow)
         {
             for (int i = 1; i < boardWidth + 1; i++)

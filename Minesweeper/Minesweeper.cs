@@ -10,6 +10,11 @@ namespace Minesweeper
             int boardColumns = userInput.GetBoardWidth();
             int boardRows = userInput.GetBoardHeight();
             int minesCount = userInput.GetMinesCount();
+            while (minesCount > (boardColumns * boardRows)-1 || minesCount<1)
+            {
+                Console.WriteLine("Incorrect number of mines! You can use number between 1-" + ((boardColumns * boardRows)-1));
+                minesCount = userInput.GetMinesCount();
+            }
             //Mines MinesArrangement = new Mines(boardColumns, boardRows, minesCount);
             //MinesArrangement.SetMines();
             //MinesArrangement.CheckArray();
