@@ -60,7 +60,7 @@ namespace Minesweeper
             else
             {
                 Console.WriteLine("error, try again");
-                return GetBoardWidth();
+                return GetMinesCount();
             }
         }
         public int GetColumnFromTheUser()

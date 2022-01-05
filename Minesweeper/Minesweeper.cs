@@ -1,4 +1,5 @@
 using System;
+using System.Media;
 namespace Minesweeper
 {
     public class MinesweeperGame
@@ -7,6 +8,10 @@ namespace Minesweeper
         public Board GameBoard;
         public void Start()
         {
+            Console.WriteLine("Press any key to play!");
+            Console.ReadKey();
+            SoundPlayer mainSong = new SoundPlayer(@"D:\Programy\VisualStudio\Projects\Minesweeper\Minesweeper\sound\song2.wav");
+            mainSong.Play();
             int boardColumns = userInput.GetBoardWidth();
             int boardRows = userInput.GetBoardHeight();
             int minesCount = userInput.GetMinesCount();
@@ -66,6 +71,7 @@ namespace Minesweeper
                 Console.Clear();
                 Console.WriteLine("You did well today!");
                 GameBoard.BoardDisplay("m");
+                Console.ReadKey();
             }
         }
     }
